@@ -1,0 +1,22 @@
+﻿  String.cpp
+C:\Users\Maksi\source\repos\Str\String\String.cpp(108,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(111,23): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(114,24): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(129,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(132,26): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(135,24): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(152,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(312,23): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(334,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(351,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(357,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(359,12): warning C4018: >=: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(375,28): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\Maksi\source\repos\Str\String\String.cpp(17): warning C4715: to_lower: значение возвращается не при всех путях выполнения
+C:\Users\Maksi\source\repos\Str\String\String.cpp(24): warning C4715: to_upper: значение возвращается не при всех путях выполнения
+C:\Users\Maksi\source\repos\Str\String\String.cpp(224): warning C4715: String::title: значение возвращается не при всех путях выполнения
+C:\Users\Maksi\source\repos\Str\String\String.cpp(303): warning C4715: String::replace: значение возвращается не при всех путях выполнения
+C:\Users\Maksi\source\repos\Str\String\String.cpp(309): warning C4715: String::replaceAll: значение возвращается не при всех путях выполнения
+C:\Users\Maksi\source\repos\Str\String\String.cpp(412): warning C4715: String::ascii_lowercase: значение возвращается не при всех путях выполнения
+C:\Users\Maksi\source\repos\Str\String\String.cpp(418): warning C4715: String::ascii_uppercase: значение возвращается не при всех путях выполнения
+  String.vcxproj -> C:\Users\Maksi\source\repos\Str\Debug\String.lib
