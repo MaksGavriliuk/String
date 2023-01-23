@@ -77,9 +77,9 @@ public:
 	String slice(int, int, int); // возвращает строкус первого до второго индекса с определённым шагом
 
 
-	String ascii_lowercase(char const*);
-	String ascii_uppercase(char const*);
-	String digits();
+	static String ascii_lowercase(char const*);
+	static String ascii_uppercase(char const*);
+	static String digits();
 
 
 

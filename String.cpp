@@ -309,13 +309,14 @@ String String::replaceAll(char const* _old, char const* _new) {
 }
 
 String String::swapcase() {
-	for (size_t i = 0; i < _len; i++) {
-		if (_str[i] == to_lower(_str[i]))
-			_str[i] = to_upper(_str[i]);
-		else if (_str[i] == to_upper(_str[i]))
-			_str[i] = to_lower(_str[i]);
+	String str(_str);
+	for (size_t i = 0; i < str._len; i++) {
+		if (str[i] == to_lower(str[i]))
+			str[i] = to_upper(str[i]);
+		else if (str[i] == to_upper(str[i]))
+			str[i] = to_lower(str[i]);
 	}
-	return String(_str);
+	return str;
 }
 
 void String::clear() {
@@ -341,7 +342,7 @@ String String::erase(size_t index) {
 }
 
 String String::reverse() {
-	return this->slice(_len, -1, -1);
+	return slice(_len, -1, -1);
 }
 
 
@@ -426,6 +427,12 @@ String String::digits() {
 
 
 char& String::operator[](int index) const {
+	if (index < (-_len))
+		terminate();
+	else if (index < 0)
+		return _str[index + _len];
+	else if(index >= _len)
+		abort();
 	return _str[index];
 }
 
