@@ -15,86 +15,157 @@ char* intToString(int number);
 
 
 class String {
+private:
 	char* _str;
 	int _len;
+	int _cap;
+
+	// дописать end (static size_t end = -1) как символ конца строки. ѕрименить в конструкторах и функци€х с длиной
+
+
+	// работа с capation
+	void resize();
+	void resize(size_t);
+	void rewrite(); // перезапись строки после довыделени€ пам€ти
+
+public:
+	static const int end = INT_MAX;
 
 public:
 	String();
 	String(char const*);
 	String(char);
-	String(string);
+	String(const string&);
 	String(int);
 	String(double);
-	String(size_t, char);
-	String(String&, size_t, size_t);
-	String(char const*, size_t, size_t);
+	String(int, char);
+	String(const String&, int, int);
+	String(char const*, int, int);
+	String(string&, int, int);
 	String(const String&);
 	~String();
 
-	int lenght() const;
-	void print() const;
-	void println() const;
+	String& append(char);
+	String& append(char const*);
+	String& append(int, char);
+	String& append(const String&);
+	String& append(const string&);
+	String& append(String&, int, int);
+	String& append(char const*, int, int);
 
-	int count(char const*) const;
-	String lower();
-	String upper();
-	String title();
-	bool startswith(char const*) const;
-	bool endswith(char const*) const;
-
-	String replace(char const*, char const*);
-	String replaceAll(char const*, char const*);
-	int lfind(char const*) const;
-	int rfind(char const*) const; // дописать
-	vector<int> find(char const*) const;
-	String swapcase();
-	const char* to_char() const;
-	string S_to_string() const;
-	void clear();
-	bool empty() const;
-	String reverse();
-	//bool in()
-	
-	String erase(size_t); // удал€ет из строки символы, начина€ с переданного индекса и до конца
-	String erase(size_t, size_t); // удал€ет начина€ с определЄнного индекса несколько элементов
-	
-	String insert(size_t, char); // вставл€ет 1 символ
-	String insert(size_t, size_t, char); // вставл€ем несколько одинаковых символов
-	String insert(size_t, String&);
-	String insert(size_t, char const*);
-	String insert(size_t, string&);
-	String substr(size_t);
-	String substr(size_t, size_t); // возвращает подстроку от i до j индекса
-	
-	String append(char);
-	String append(char const*);
-	String append(int, char);
-	String append(String&, size_t, size_t);
-	String append(char const*, size_t, size_t);
-
-	String slice(size_t); // возвращает строку, начина€ с определЄнного индекса
-	String slice(size_t, size_t); // возвращает строку с первого до второго индекса
-	String slice(int, int, int); // возвращает строкус первого до второго индекса с определЄнным шагом
-
+	String& assign(char);
+	String& assign(char const*);
+	String& assign(const string&);
+	String& assign(const String&);
+	String& assign(char const*, int, int);
+	String& assign(String&, int, int);
+	String& assign(string&, int, int);
 
 	static String ascii_lowercase(char const*);
 	static String ascii_uppercase(char const*);
-	static String digits();
 
+	char at(int) const;
+	int capacity() const;
+	void clear();
+	int count(char const*) const;
+	static String digits();
+	bool empty() const;
+	bool endswith(char const*) const;
+
+	String& erase(int); // удал€ет из строки символы, начина€ с переданного индекса и до конца
+	String& erase(int, int); // удал€ет, начина€ с определЄнного индекса несколько элементов
+
+	vector<int> find(char const*) const;
+	bool in(char) const;
+	bool in(char const*) const;
+	bool in(const string&) const;
+	bool in(const String&) const;
+
+	String& insert(int, char) ; // вставл€ет 1 символ
+	String& insert(int, int, char); // вставл€ем несколько одинаковых символов
+	String& insert(int, String&); 
+	String& insert(int, char const*);
+	String& insert(int, string&);
+
+	int length() const;
+	int lfind(char const*) const;
+	String lower() const;
+	void print() const;
+	void println() const;
+
+	String replace(char const*, char const*) const;
+	String replaceAll(char const*, char const*) const;
+
+	String reverse();
+	int rfind(char const*) const;
+	string S_to_string() const;
+
+	String slice(int) const; // возвращает строку, начина€ с определЄнного индекса
+	String slice(int, int) const; // возвращает строку с первого до второго индекса
+	String slice(int, int, int) const; // возвращает строку с первого до второго индекса с определЄнным шагом
+
+	String sort() const;
+	bool startswith(char const*) const;
+	void swap(String&); // a.swap(b) содержимое строк свапаетс€
+	String swapcase() const;
+	String title() const;
+	char* to_char() const;
+	const char* to_const_char() const;
+	String upper() const;
+
+
+	template<class T>
+	static String join(vector<T>& args, char const* sep) {
+		String str;
+		for (size_t i = 0; i < args.size();i++) {
+			str += args[i];
+			str.append(sep);
+		}
+		return str;
+	}
+
+
+	String& as() {
+		_str[0] = 'a';
+		return *this;
+	}
+
+
+
+
+	/*
+	class iterator {
+	private:
+		String* _cur;
+	public:
+		iterator(String* first) : _cur(first) {}
+		String& operator+(int n) { return *(_cur + n); }
+		String& operator-(int n) { return *(_cur - n); }
+		String& operator++(int n) { return *_cur++; }
+		String& operator--(int n) { return *_cur--; }
+		String& operator++() { return *++_cur; }
+		String& operator--() { return *--_cur; }
+
+		bool operator!=(const iterator& it) { return _cur != it._cur; }
+		bool operator==(const iterator& it) { return _cur == it._cur; }
+		String& operator*() { return *_cur; }
+	};
+
+	iterator begin() { return this; }
+	iterator end() { return this + sizeof(this->_str); }
+	*/
 
 
 	char& operator[](int) const;
 	
-	char* operator=(char const*);
-	String operator=(String&);
+	String& operator=(char);
+	String operator=(char const*);
 	String operator=(const String&);
-	String operator=(string&);
 	String operator=(const string&);
 
 	friend String operator+(String, String);
 	friend String operator+(String&, char const*);
 	friend String operator+(char const*, String&);
-
 	friend String operator+(String&, int);
 	friend String operator+(int, String&);
 	friend String operator+(String&, double);
@@ -103,53 +174,27 @@ public:
 	friend String operator*(String&, int);
 	friend String operator*(int, String&);
 	
-	friend String operator*=(String&, int);
-	friend String operator+=(String&, String);
-	friend String operator+=(String&, char const*);
-	friend String operator+=(String&, int);
-	friend String operator+=(String&, double);
+	String& operator*=(int);
+	
+	String& operator+=(const String&);
+	String& operator+=(char const*);
+	String& operator+=(const string&);
+	String& operator+=(char);
+	String& operator+=(int);
+	String& operator+=(double);
 
-	friend ostream& operator<<(ostream&, String&);
 	friend ostream& operator<<(ostream&, const String&);
 	friend String operator>>(istream&, String&);
 	
-	friend bool operator==(String&, String&);
-	friend bool operator==(const String&, String&);
-	friend bool operator==(String&, const String&);
 	friend bool operator==(const String&, const String&);
-
-	friend bool operator==(String&, char const*);
-	friend bool operator==(char const*, String&);
 	friend bool operator==(const String&, char const*);
 	friend bool operator==(char const*, const String&);
-
-	friend bool operator==(String&, string&);
-	friend bool operator==(string&, String&);
-	friend bool operator==(string&, const String&);
-	friend bool operator==(const String&, string&);
-	
-	friend bool operator==(String&, const string&);
-	friend bool operator==(const string&, String&);
 	friend bool operator==(const String&, const string&);
 	friend bool operator==(const string&, const String&);
 
-	friend bool operator!=(String&, String&);
-	friend bool operator!=(const String&, String&);
-	friend bool operator!=(String&, const String&);
 	friend bool operator!=(const String&, const String&);
-	
-	friend bool operator!=(String&, char const*);
-	friend bool operator!=(char const*, String&);
 	friend bool operator!=(const String&, char const*);
 	friend bool operator!=(char const*, const String&);
-	
-	friend bool operator!=(String&, string&);
-	friend bool operator!=(string&, String&);
-	friend bool operator!=(string&, const String&);
-	friend bool operator!=(const String&, string&);
-
-	friend bool operator!=(String&, const string&);
-	friend bool operator!=(const string&, String&);
 	friend bool operator!=(const String&, const string&);
 	friend bool operator!=(const string&, const String&);
 
